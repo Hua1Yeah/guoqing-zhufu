@@ -81,11 +81,9 @@ h1{
   animation:heroIn 1.1s .2s cubic-bezier(.2,.8,.2,1) both;
 }
 h1 .diao{
-  position:relative;display:inline-block;
-}
-h1 .diao::after{
-  content:"";position:absolute;left:0;right:0;bottom:.06em;height:.09em;border-radius:99px;
-  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);opacity:.75;
+  color:var(--gold-300);
+  border-bottom:.085em solid rgba(245,197,66,.55);
+  padding-bottom:.01em;
 }
 .hero .sub{
   font-size:clamp(13px,2.9vw,17px);color:#ffd9b0;opacity:.9;margin:10px 0 0;
@@ -162,7 +160,20 @@ section{padding:74px 0;position:relative}
 .bless-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
 
 /* ── 孔明灯 ───────────────────────────────────────────────── */
-.lantern-stage{
+.lantern-write{margin-bottom:16px}
+.lantern-write label{display:block;font-size:13px;color:#ffd9b0;opacity:.88;margin-bottom:9px;letter-spacing:.03em}
+.lantern-write textarea{
+  display:block;width:100%;resize:none;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,215,94,.26);
+  border-radius:14px;padding:12px 14px;color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.6;
+  outline:none;transition:border-color .2s,background .2s;
+}
+.lantern-write textarea:focus{border-color:rgba(255,215,94,.62);background:rgba(255,255,255,.095)}
+.lantern-write textarea::placeholder{color:rgba(255,236,207,.4)}
+.lantern-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:11px;flex-wrap:wrap}
+.ln-hint{font-size:12px;color:#ffd9b0;opacity:.62}
+.ln-hint.warn{color:#ffb347;opacity:1}.lantern-stage{
   position:relative;height:min(46vh,380px);border-radius:18px;overflow:hidden;
   background:linear-gradient(180deg,rgba(74,4,16,.55),rgba(37,3,10,.85));
   border:1px solid rgba(255,215,94,.16);
@@ -186,10 +197,10 @@ section{padding:74px 0;position:relative}
 }
 .lantern .wish{
   position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
-  white-space:nowrap;font-size:12px;color:var(--gold-200);
-  text-shadow:0 0 10px rgba(0,0,0,.9);opacity:.92;
-}
-@keyframes rise{
+  width:max-content;max-width:172px;text-align:center;
+  white-space:normal;font-size:12px;line-height:1.45;color:var(--gold-200);
+  text-shadow:0 0 10px rgba(0,0,0,.9);opacity:.94;
+}@keyframes rise{
   0%{transform:translateY(0) translateX(0) rotate(-3deg);opacity:0}
   8%{opacity:1}
   50%{transform:translateY(-42vh) translateX(14px) rotate(4deg)}
@@ -351,13 +362,20 @@ body.cardonly #cardPreview{
       <p>每盏灯都带走一句话</p>
     </div>
     <div class="card reveal">
-      <div class="lantern-stage" id="stage">
-        <div class="tip">点一下这里，就放一盏</div>
+            <div class="lantern-write">
+        <label for="lanternMsg">写下想对老师说的话，让它带着飞上去</label>
+        <textarea id="lanternMsg" maxlength="40" rows="2" placeholder="例如：祝刁老师身体健康，桃李满天下"></textarea>
+        <div class="lantern-actions">
+          <span class="ln-hint" id="lanternHint">还可以写 40 个字 · 不写会自动挑一句</span>
+          <button class="btn solid" id="btnLanternSend">🕯 放飞孔明灯</button>
+        </div>
+      </div><div class="lantern-stage" id="stage">
+        <div class="tip">点这里也能放一盏</div>
       </div>
       <div class="lantern-meta">
         <div class="count">已放飞 <b id="lanternCount">0</b> 盏</div>
-        <div class="lastwish" id="lastWish">点一下上面，让它带着话飞上去。</div>
-        <button class="btn ghost" id="btnLanternAll">一次放 9 盏</button>
+        <div class="lastwish" id="lastWish">写下你的祝福，放飞一盏灯吧。</div>
+        <button class="btn ghost" id="btnLanternAll">用这句话放 9 盏</button>
       </div>
     </div>
   </section>
@@ -840,14 +858,35 @@ function stepLanterns() {
   }
 }
 
-stage.addEventListener("click", (ev) => {
-  if (ev.target.closest(".tip")) { addLantern(); return; }
-  addLantern();
-});
+/* ── 用户自己写的话 ── */
+const lanternInput = $("lanternMsg");
+const lanternHint = $("lanternHint");
+const LN_MAX = 40;
+function typedWish() {
+  return lanternInput ? lanternInput.value.trim().slice(0, LN_MAX) : "";
+}
+function refreshLanternHint() {
+  if (!lanternHint) return;
+  const left = LN_MAX - (lanternInput ? lanternInput.value.trim().length : 0);
+  lanternHint.textContent = left > 0
+    ? "还可以写 " + left + " 个字 · 不写会自动挑一句"
+    : "写满啦，可以放飞了 🕯";
+  lanternHint.classList.toggle("warn", left <= 0);
+}
+function releaseTyped() { addLantern(typedWish() || null); }
+if (lanternInput) {
+  lanternInput.addEventListener("input", refreshLanternHint);
+  refreshLanternHint();
+  lanternInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); releaseTyped(); }
+  });
+}
+stage.addEventListener("click", () => releaseTyped());
+if ($("btnLanternSend")) $("btnLanternSend").addEventListener("click", releaseTyped);
 $("btnLanternAll").addEventListener("click", () => {
-  for (let i = 0; i < 9; i++) setTimeout(() => addLantern(LANTERN_WISHES[i % LANTERN_WISHES.length]), i * 260);
+  const w = typedWish();
+  for (let i = 0; i < 9; i++) setTimeout(() => addLantern(w || LANTERN_WISHES[i % LANTERN_WISHES.length]), i * 260);
 });
-
 /* =========================================================================
    7. 贺卡（Canvas 绘制 → 下载 / 复制）
    ========================================================================= */
