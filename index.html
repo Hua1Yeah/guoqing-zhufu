@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7a0718">
+<title>祝刁老师国庆节快乐 · 江苏省盱眙中学</title>
+<style>
+/* ==========================================================================
+   祝刁明明老师 · 国庆节快乐
+   单文件页面：不引用任何外部资源（字体 / 图片 / 脚本全部内置），
+   双击即可打开，也可以直接发给老师。
+   ========================================================================== */
+
+:root{
+  --red-900:#4a0410;
+  --red-800:#7a0718;
+  --red-700:#a80c26;
+  --red-600:#c8102e;
+  --gold-400:#f5c542;
+  --gold-300:#ffd75e;
+  --gold-200:#ffe89a;
+  --gold-100:#fff6d6;
+  --ink:#ffeccf;
+  --serif:"Source Han Serif SC","Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC",system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:radial-gradient(120% 80% at 50% 0%,var(--red-800) 0%,var(--red-900) 45%,#25030a 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.75;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+canvas#sky,canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+canvas#sky{z-index:0}
+canvas#fx{z-index:1}
+
+/* 顶部与底部的暗角，让文字更清楚 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(80% 55% at 50% 18%,rgba(0,0,0,0) 0%,rgba(37,3,10,.55) 100%);
+}
+
+.wrap{position:relative;z-index:3;max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* ── 顶部横幅 ─────────────────────────────────────────────── */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:48px 20px 96px;position:relative;
+}
+.flagbox{
+  width:min(360px,74vw);aspect-ratio:3/2;position:relative;
+  border-radius:6px;overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 0 1px rgba(255,215,94,.35),0 0 60px rgba(200,16,46,.5);
+  margin-bottom:34px;
+  animation:heroIn 1.1s cubic-bezier(.2,.8,.2,1) both;
+}
+.flagbox canvas{display:block;width:100%;height:100%}
+@keyframes heroIn{from{opacity:0;transform:translateY(-18px) scale(.94)}to{opacity:1;transform:none}}
+
+.eyebrow{
+  font-size:clamp(13px,2.6vw,16px);letter-spacing:.5em;text-indent:.5em;
+  color:var(--gold-300);opacity:.92;margin:0 0 14px;
+  animation:heroIn 1.1s .12s cubic-bezier(.2,.8,.2,1) both;
+}
+h1{
+  font-family:var(--serif);font-weight:800;
+  font-size:clamp(38px,10vw,86px);line-height:1.14;
+  margin:0 0 6px;letter-spacing:.02em;
+  background:linear-gradient(178deg,var(--gold-100) 0%,var(--gold-300) 38%,var(--gold-400) 70%,#c99413 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 14px rgba(255,190,60,.4));
+  animation:heroIn 1.1s .2s cubic-bezier(.2,.8,.2,1) both;
+}
+h1 .diao{
+  position:relative;display:inline-block;
+}
+h1 .diao::after{
+  content:"";position:absolute;left:0;right:0;bottom:.06em;height:.09em;border-radius:99px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);opacity:.75;
+}
+.hero .sub{
+  font-size:clamp(13px,2.9vw,17px);color:#ffd9b0;opacity:.9;margin:10px 0 0;
+  animation:heroIn 1.1s .3s cubic-bezier(.2,.8,.2,1) both;
+}
+.anniv{
+  display:flex;align-items:center;gap:14px;margin-top:30px;
+  animation:heroIn 1.1s .4s cubic-bezier(.2,.8,.2,1) both;
+}
+.anniv .line{width:clamp(28px,9vw,80px);height:1px;background:linear-gradient(90deg,transparent,var(--gold-400))}
+.anniv .line:last-child{background:linear-gradient(270deg,transparent,var(--gold-400))}
+.anniv .num{
+  font-family:var(--serif);font-size:clamp(30px,7vw,54px);font-weight:800;line-height:1;
+  background:linear-gradient(180deg,var(--gold-200),var(--gold-400));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.anniv .lbl{font-size:clamp(11px,2.4vw,14px);letter-spacing:.3em;color:var(--gold-200);opacity:.85}
+.hero .hint{
+  position:absolute;bottom:26px;left:0;right:0;font-size:13px;color:#ffc9a0;opacity:.7;
+  animation:bob 2.6s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:.95}}
+
+/* ── 通用区块 ─────────────────────────────────────────────── */
+section{padding:74px 0;position:relative}
+.sec-head{text-align:center;margin-bottom:34px}
+.sec-head .kicker{
+  font-size:12px;letter-spacing:.42em;text-indent:.42em;color:var(--gold-400);opacity:.85;margin:0 0 10px;
+}
+.sec-head h2{
+  font-family:var(--serif);font-size:clamp(24px,5.6vw,38px);font-weight:700;margin:0;
+  background:linear-gradient(180deg,var(--gold-100),var(--gold-300));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sec-head p{margin:10px 0 0;color:#ffcfae;opacity:.82;font-size:14px}
+
+.card{
+  background:linear-gradient(160deg,rgba(255,236,207,.09),rgba(255,236,207,.03));
+  border:1px solid rgba(255,215,94,.22);
+  border-radius:20px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 14px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.07);
+  padding:clamp(22px,4.5vw,38px);
+}
+
+.btn{
+  appearance:none;border:1px solid rgba(255,215,94,.5);
+  background:linear-gradient(180deg,rgba(255,215,94,.2),rgba(255,215,94,.07));
+  color:var(--gold-100);font-family:inherit;font-size:15px;font-weight:600;
+  padding:11px 24px;border-radius:999px;cursor:pointer;
+  transition:transform .16s,box-shadow .16s,background .16s;
+  box-shadow:0 6px 20px rgba(0,0,0,.28);
+}
+.btn:hover{transform:translateY(-2px);background:linear-gradient(180deg,rgba(255,215,94,.32),rgba(255,215,94,.12));box-shadow:0 10px 26px rgba(255,190,60,.24)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.solid{
+  background:linear-gradient(180deg,var(--gold-300),var(--gold-400));
+  color:#5a0a12;border-color:transparent;font-weight:700;
+}
+.btn.solid:hover{box-shadow:0 12px 30px rgba(255,190,60,.42)}
+.btn.ghost{background:transparent;border-color:rgba(255,236,207,.28);color:#ffe0bd;font-weight:500}
+
+/* ── 祝福语打字机 ─────────────────────────────────────────── */
+#blessBox{min-height:132px;display:flex;align-items:center;justify-content:center;text-align:center}
+#blessText{
+  font-family:var(--serif);font-size:clamp(18px,4.2vw,27px);line-height:1.75;
+  color:var(--gold-100);margin:0;text-shadow:0 2px 18px rgba(255,190,60,.22);
+}
+#blessText .caret{
+  display:inline-block;width:.06em;height:1.05em;margin-left:.08em;vertical-align:-.14em;
+  background:var(--gold-300);animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.bless-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+
+/* ── 孔明灯 ───────────────────────────────────────────────── */
+.lantern-stage{
+  position:relative;height:min(46vh,380px);border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(74,4,16,.55),rgba(37,3,10,.85));
+  border:1px solid rgba(255,215,94,.16);
+}
+.lantern-stage .tip{
+  position:absolute;inset:auto 0 14px;text-align:center;font-size:13px;color:#ffc9a0;opacity:.62;pointer-events:none;
+}
+.lantern{
+  position:absolute;bottom:-90px;will-change:transform;
+  animation:rise linear forwards;
+}
+.lantern .body{
+  width:34px;height:44px;border-radius:50% 50% 42% 42%;
+  background:radial-gradient(60% 46% at 50% 68%,#fff3c4 0%,#ffc93c 34%,#e8761f 72%,#a8320b 100%);
+  box-shadow:0 0 22px 6px rgba(255,180,60,.5),0 0 60px 18px rgba(255,140,40,.2);
+  position:relative;
+}
+.lantern .body::after{
+  content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);
+  width:11px;height:5px;border-radius:0 0 3px 3px;background:#7a2a05;
+}
+.lantern .wish{
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
+  white-space:nowrap;font-size:12px;color:var(--gold-200);
+  text-shadow:0 0 10px rgba(0,0,0,.9);opacity:.92;
+}
+@keyframes rise{
+  0%{transform:translateY(0) translateX(0) rotate(-3deg);opacity:0}
+  8%{opacity:1}
+  50%{transform:translateY(-42vh) translateX(14px) rotate(4deg)}
+  100%{transform:translateY(-108%) translateX(-10px) rotate(-5deg);opacity:0}
+}
+.lantern-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px}
+.lantern-meta .count{font-size:14px;color:#ffd9b0;opacity:.85}
+.lantern-meta .count b{color:var(--gold-300);font-size:20px;font-family:var(--serif)}
+.lantern-meta .lastwish{flex:1 1 240px;font-size:14px;color:var(--gold-200);opacity:.9;min-height:1.6em}
+
+/* ── 贺卡 ─────────────────────────────────────────────────── */
+#cardPreview{
+  display:block;width:100%;max-width:430px;margin:0 auto;border-radius:16px;
+  box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,215,94,.28);
+}
+.card-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.field{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.field label{font-size:14px;color:#ffd9b0;opacity:.85}
+input[type=text],textarea{
+  font-family:inherit;font-size:15px;color:var(--gold-100);
+  background:rgba(0,0,0,.28);border:1px solid rgba(255,215,94,.26);
+  border-radius:10px;padding:10px 14px;outline:none;transition:border-color .16s,box-shadow .16s;
+}
+input[type=text]:focus,textarea:focus{border-color:rgba(255,215,94,.7);box-shadow:0 0 0 3px rgba(255,215,94,.14)}
+input[type=text]{width:min(260px,60vw)}
+textarea{width:min(520px,86vw);min-height:78px;resize:vertical;line-height:1.6}
+
+/* ── 小问答 ───────────────────────────────────────────────── */
+.quiz-q{font-family:var(--serif);font-size:clamp(17px,3.6vw,22px);color:var(--gold-100);margin:0 0 18px;text-align:center}
+.quiz-opts{display:grid;gap:11px;grid-template-columns:1fr;max-width:600px;margin:0 auto}
+@media(min-width:620px){.quiz-opts{grid-template-columns:1fr 1fr}}
+.opt{
+  text-align:left;padding:13px 18px;border-radius:13px;cursor:pointer;
+  border:1px solid rgba(255,215,94,.24);background:rgba(255,236,207,.055);
+  color:var(--ink);font-family:inherit;font-size:15px;transition:all .16s;
+}
+.opt:hover:not(.locked){background:rgba(255,215,94,.14);border-color:rgba(255,215,94,.5);transform:translateY(-1px)}
+.opt.right{background:rgba(64,190,110,.24);border-color:rgba(96,230,140,.75);color:#d8ffe6}
+.opt.wrong{background:rgba(220,60,60,.22);border-color:rgba(255,120,120,.7);color:#ffe0e0}
+.opt.locked{cursor:default}
+.quiz-foot{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px;flex-wrap:wrap}
+.quiz-foot .prog{font-size:14px;color:#ffd9b0;opacity:.85}
+.quiz-foot .prog b{color:var(--gold-300)}
+
+/* ── 祝福墙 ───────────────────────────────────────────────── */
+#wallList{display:grid;gap:14px;margin-top:24px}
+.wall-item{
+  border-left:3px solid var(--gold-400);padding:12px 18px;border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(255,215,94,.11),rgba(255,215,94,.02));
+  animation:heroIn .5s cubic-bezier(.2,.8,.2,1) both;
+}
+.wall-item .who{font-size:13px;color:var(--gold-300);font-weight:600;margin-bottom:3px}
+.wall-item .say{font-size:15px;color:#ffe8cd;white-space:pre-wrap;word-break:break-word}
+.wall-item .when{font-size:11px;color:#ffc9a0;opacity:.55;margin-top:5px}
+
+/* ── 底部控制条 ───────────────────────────────────────────── */
+#bar{
+  position:fixed;z-index:9;left:50%;bottom:18px;transform:translateX(-50%);
+  display:flex;gap:9px;padding:9px;border-radius:999px;
+  background:rgba(37,3,10,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,215,94,.26);box-shadow:0 12px 34px rgba(0,0,0,.5);
+}
+#bar button{
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  color:var(--gold-200);font-family:inherit;font-size:13px;font-weight:600;
+  padding:8px 14px;border-radius:999px;white-space:nowrap;transition:background .16s,color .16s;
+}
+#bar button:hover{background:rgba(255,215,94,.16);color:#fff}
+#bar button.on{background:linear-gradient(180deg,var(--gold-300),var(--gold-400));color:#5a0a12}
+
+footer{
+  position:relative;z-index:3;text-align:center;padding:40px 20px 120px;
+  font-size:13px;color:#ffc9a0;opacity:.55;line-height:2;
+}
+
+/* ── 弹出提示 ─────────────────────────────────────────────── */
+#toast{
+  position:fixed;z-index:20;left:50%;top:26px;transform:translate(-50%,-24px);
+  padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;
+  background:linear-gradient(180deg,var(--gold-300),var(--gold-400));color:#5a0a12;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);opacity:0;pointer-events:none;
+  transition:opacity .28s,transform .28s;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ── 卡片模式：地址栏加 #cardonly 就只剩贺卡，方便截图 ── */
+body.cardonly{overflow:hidden;background:#42040e}
+body.cardonly::before{display:none}
+body.cardonly #sky,body.cardonly #fx,body.cardonly #bar,
+body.cardonly footer,body.cardonly #toast,body.cardonly .hero,
+body.cardonly section:not(#card){display:none!important}
+body.cardonly .wrap{padding:0;max-width:none}
+body.cardonly section#card{padding:0}
+body.cardonly #card .sec-head,
+body.cardonly #card .field,
+body.cardonly #card .card-actions,
+body.cardonly #card #cardHolder > div{display:none!important}
+body.cardonly .card{
+  background:none;border:0;border-radius:0;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;
+}
+body.cardonly #cardPreview{
+  position:fixed;inset:0;width:1080px;height:1440px;max-width:none;
+  margin:0;border-radius:0;box-shadow:none;
+}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<canvas id="sky"></canvas>
+<canvas id="fx"></canvas>
+
+<div class="wrap">
+
+  <!-- ══════════ 首屏 ══════════ -->
+  <header class="hero">
+    <div class="flagbox"><canvas id="flag"></canvas></div>
+    <p class="eyebrow">江苏省盱眙中学</p>
+    <h1>祝<span class="diao">刁老师</span><br>国庆节快乐</h1>
+    <p class="sub">一份来自学生的小小心意 · 2026年10月1日</p>
+    <div class="anniv">
+      <span class="line"></span>
+      <span class="num">77</span>
+      <span class="lbl">周年</span>
+      <span class="line"></span>
+    </div>
+    <p class="hint">↓ 往下滑，还有几样小东西 ↓</p>
+  </header>
+
+  <!-- ══════════ ① 祝福语 ══════════ -->
+  <section id="bless">
+    <div class="sec-head reveal">
+      <p class="kicker">一 · 想说给您听</p>
+      <h2>给刁老师的祝福</h2>
+      <p>换一句试试，每一句都不一样</p>
+    </div>
+    <div class="card reveal">
+      <div id="blessBox"><p id="blessText"></p></div>
+      <div class="bless-actions">
+        <button class="btn solid" id="btnBless">换一句祝福</button>
+        <button class="btn ghost" id="btnCopyBless">复制这一句</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ② 孔明灯 ══════════ -->
+  <section id="lantern">
+    <div class="sec-head reveal">
+      <p class="kicker">二 · 放一盏灯</p>
+      <h2>为老师放一盏孔明灯</h2>
+      <p>每盏灯都带走一句话</p>
+    </div>
+    <div class="card reveal">
+      <div class="lantern-stage" id="stage">
+        <div class="tip">点一下这里，就放一盏</div>
+      </div>
+      <div class="lantern-meta">
+        <div class="count">已放飞 <b id="lanternCount">0</b> 盏</div>
+        <div class="lastwish" id="lastWish">点一下上面，让它带着话飞上去。</div>
+        <button class="btn ghost" id="btnLanternAll">一次放 9 盏</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ③ 贺卡 ══════════ -->
+  <section id="card">
+    <div class="sec-head reveal">
+      <p class="kicker">三 · 做张贺卡</p>
+      <h2>一键生成，能直接发微信</h2>
+      <p>写下名字，图片就在下面实时变</p>
+    </div>
+    <div class="card reveal">
+      <div class="field">
+        <label for="fromName">署名</label>
+        <input type="text" id="fromName" value="您的学生" maxlength="16" placeholder="写上你的名字">
+      </div>
+      <div class="field">
+        <label for="cardWish">贺卡上的话</label>
+      </div>
+      <div class="field">
+        <textarea id="cardWish" maxlength="70" placeholder="留空就用页面上的祝福">刁老师，国庆节快乐！愿您身体康健，桃李满园。</textarea>
+      </div>
+      <div class="card-actions">
+        <button class="btn ghost" id="btnCardShuffle">换一句</button>
+      </div>
+      <div id="cardHolder" style="margin-top:26px">
+        <canvas id="cardPreview"></canvas>
+      </div>
+      <div class="card-actions">
+        <button class="btn solid" id="btnDownload">下载贺卡图片</button>
+        <button class="btn ghost" id="btnCopyImg">复制图片</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ④ 小问答 ══════════ -->
+  <section id="quiz">
+    <div class="sec-head reveal">
+      <p class="kicker">四 · 小问答</p>
+      <h2>几道题，攒着过节</h2>
+      <p>答对了会放烟花</p>
+    </div>
+    <div class="card reveal">
+      <p class="quiz-q" id="quizQ">加载中…</p>
+      <div class="quiz-opts" id="quizOpts"></div>
+      <div class="quiz-foot">
+        <span class="prog">答对 <b id="quizRight">0</b> / <span id="quizTotal">5</span></span>
+        <button class="btn ghost" id="btnQuizReset">重来一次</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑤ 祝福墙 ══════════ -->
+  <section id="wall">
+    <div class="sec-head reveal">
+      <p class="kicker">五 · 留一句话</p>
+      <h2>祝福墙</h2>
+      <p>存在你自己浏览器里，不会传到网上</p>
+    </div>
+    <div class="card reveal">
+      <div class="field">
+        <input type="text" id="wallName" placeholder="你的名字（可不填）" maxlength="12">
+      </div>
+      <div class="field">
+        <textarea id="wallMsg" maxlength="120" placeholder="想对刁老师说的话…"></textarea>
+      </div>
+      <div class="card-actions">
+        <button class="btn solid" id="btnWallAdd">贴到墙上</button>
+        <button class="btn ghost" id="btnWallClear">清空我这台电脑上的</button>
+      </div>
+      <div id="wallList"></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  江苏省盱眙中学 · 刁明明老师<br>
+  谨以此页，敬祝国庆<br>
+  <span style="opacity:.6">纯 HTML 单文件 · 不联网 · 不上传任何内容</span>
+</footer>
+
+<div id="bar">
+  <button id="barMusic">♪ 音乐</button>
+  <button id="barFire">🎆 烟花</button>
+  <button id="barTop">↑ 回顶</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+"use strict";
+/* =========================================================================
+   0. 小工具
+   ========================================================================= */
+const $ = (id) => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = (arr) => arr[(Math.random() * arr.length) | 0];
+
+let toastTimer = 0;
+function toast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 1900);
+}
+
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((res, rej) => {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      res();
+    } catch (e) { rej(e); }
+  });
+}
+
+const REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* =========================================================================
+   1. 星空背景
+   ========================================================================= */
+const sky = $("sky");
+const skyCtx = sky.getContext("2d");
+let stars = [];
+
+function sizeCanvas(cv) {
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+  const w = window.innerWidth, h = window.innerHeight;
+  cv.width = Math.floor(w * dpr);
+  cv.height = Math.floor(h * dpr);
+  cv.style.width = w + "px";
+  cv.style.height = h + "px";
+  const g = cv.getContext("2d");
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { w, h, g };
+}
+
+function buildStars() {
+  const { w, h } = sizeCanvas(sky);
+  const n = clamp(Math.round((w * h) / 12000), 60, 220);
+  stars = [];
+  for (let i = 0; i < n; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h * 0.92,
+      r: rand(0.5, 1.7),
+      base: rand(0.25, 0.85),
+      sp: rand(0.4, 1.6),
+      ph: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawStars(t) {
+  const w = window.innerWidth, h = window.innerHeight;
+  skyCtx.clearRect(0, 0, w, h);
+  for (const s of stars) {
+    const a = REDUCED ? s.base : s.base * (0.55 + 0.45 * Math.sin(t * s.sp + s.ph));
+    skyCtx.globalAlpha = a;
+    skyCtx.fillStyle = "#ffe9b8";
+    skyCtx.beginPath();
+    skyCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    skyCtx.fill();
+  }
+  skyCtx.globalAlpha = 1;
+}
+
+/* =========================================================================
+   2. 五星红旗（按 GB 标准比例绘制，带波浪）
+   ========================================================================= */
+const flagCv = $("flag");
+const flagCtx = flagCv.getContext("2d");
+const UNIT = 20, FW = 30 * UNIT, FH = 20 * UNIT;   // 600 × 400
+let flagBase = null;
+
+function drawStarShape(g, cx, cy, R, rot) {
+  const inner = R * Math.sin(Math.PI / 10) / Math.sin(3 * Math.PI / 10);
+  g.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const rr = (i % 2 === 0) ? R : inner;
+    const ang = rot - Math.PI / 2 + i * Math.PI / 5;
+    const x = cx + Math.cos(ang) * rr;
+    const y = cy + Math.sin(ang) * rr;
+    if (i) g.lineTo(x, y); else g.moveTo(x, y);
+  }
+  g.closePath();
+  g.fill();
+}
+
+function buildFlag() {
+  const c = document.createElement("canvas");
+  c.width = FW; c.height = FH;
+  const g = c.getContext("2d");
+  g.fillStyle = "#de2910";
+  g.fillRect(0, 0, FW, FH);
+  g.fillStyle = "#ffde00";
+  const BIG = { x: 5 * UNIT, y: 5 * UNIT, r: 3 * UNIT };
+  drawStarShape(g, BIG.x, BIG.y, BIG.r, 0);
+  const SMALL = [[10, 2], [12, 4], [12, 7], [10, 9]];
+  for (const [ux, uy] of SMALL) {
+    const cx = ux * UNIT, cy = uy * UNIT;
+    // 每颗小星有一个角正对大星中心
+    const rot = Math.atan2(BIG.y - cy, BIG.x - cx) + Math.PI / 2;
+    drawStarShape(g, cx, cy, UNIT, rot);
+  }
+  flagBase = c;
+}
+
+function sizeFlag() {
+  const box = flagCv.parentElement;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = box.clientWidth, h = box.clientHeight;
+  flagCv.width = Math.floor(w * dpr);
+  flagCv.height = Math.floor(h * dpr);
+  flagCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function drawFlag(t) {
+  if (!flagBase) return;
+  const w = flagCv.clientWidth, h = flagCv.clientHeight;
+  if (flagCv.width !== Math.floor(w * Math.min(window.devicePixelRatio || 1, 2))) sizeFlag();
+  flagCtx.clearRect(0, 0, w, h);
+  const amp = h * 0.052;
+  const speed = REDUCED ? 0 : t * 1.5;
+  for (let x = 0; x < w; x++) {
+    const p = x / w;
+    const off = Math.sin(p * Math.PI * 3 + speed) * amp
+              + Math.sin(p * Math.PI * 7 + speed * 1.7) * amp * 0.34;
+    flagCtx.drawImage(flagBase, (p * FW) | 0, 0, 2, FH, x, off, 1.4, h);
+    // 用波形的斜率模拟褶皱明暗
+    const slope = Math.cos(p * Math.PI * 3 + speed);
+    if (slope > 0) {
+      flagCtx.fillStyle = "rgba(255,255,255," + (slope * 0.15).toFixed(3) + ")";
+    } else {
+      flagCtx.fillStyle = "rgba(0,0,0," + (-slope * 0.24).toFixed(3) + ")";
+    }
+    flagCtx.fillRect(x, off, 1.4, h);
+  }
+}
+
+/* =========================================================================
+   3. 烟花
+   ========================================================================= */
+const fx = $("fx");
+const fxCtx = fx.getContext("2d");
+let parts = [], rockets = [];
+const PALETTE = ["#ffd75e", "#ff5a5a", "#ff9f45", "#7ee8a2", "#79c8ff", "#e28bff", "#fff3c4", "#ffd0e0"];
+
+function explode(x, y, hueColor) {
+  const n = 54 + ((Math.random() * 46) | 0);
+  const col = hueColor || pick(PALETTE);
+  const power = rand(2.4, 4.6);
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + Math.random() * 0.14;
+    const sp = power * rand(0.45, 1.15);
+    parts.push({
+      x, y,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp,
+      life: 1,
+      decay: rand(0.009, 0.019),
+      col,
+      size: rand(1.3, 2.6)
+    });
+  }
+  // 中心闪光
+  for (let i = 0; i < 12; i++) {
+    parts.push({ x, y, vx: rand(-1, 1), vy: rand(-1, 1), life: 1, decay: 0.05, col: "#ffffff", size: rand(1.5, 3) });
+  }
+}
+
+function launch(tx, ty) {
+  const x = tx !== undefined ? tx : rand(window.innerWidth * 0.15, window.innerWidth * 0.85);
+  const ty2 = ty !== undefined ? ty : rand(window.innerHeight * 0.12, window.innerHeight * 0.45);
+  rockets.push({
+    x, y: window.innerHeight + 8,
+    vy: -rand(7.5, 10.5),
+    vx: (x - window.innerWidth / 2) * -0.0016,
+    targetY: ty2,
+    col: pick(PALETTE),
+    trail: []
+  });
+}
+
+function stepFx() {
+  const w = window.innerWidth, h = window.innerHeight;
+  // 拖尾：半透明覆盖代替整屏清除
+  fxCtx.globalCompositeOperation = "destination-out";
+  fxCtx.fillStyle = "rgba(0,0,0,0.17)";
+  fxCtx.fillRect(0, 0, w, h);
+  fxCtx.globalCompositeOperation = "lighter";
+
+  for (let i = rockets.length - 1; i >= 0; i--) {
+    const r = rockets[i];
+    r.x += r.vx; r.y += r.vy; r.vy += 0.055;
+    fxCtx.fillStyle = r.col;
+    fxCtx.beginPath(); fxCtx.arc(r.x, r.y, 2.2, 0, Math.PI * 2); fxCtx.fill();
+    fxCtx.fillStyle = "rgba(255,255,255,.7)";
+    fxCtx.beginPath(); fxCtx.arc(r.x, r.y, 0.9, 0, Math.PI * 2); fxCtx.fill();
+    if (r.vy >= -0.7 || r.y <= r.targetY) {
+      explode(r.x, r.y, r.col);
+      rockets.splice(i, 1);
+    }
+  }
+
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const p = parts[i];
+    p.x += p.vx; p.y += p.vy;
+    p.vx *= 0.982; p.vy = p.vy * 0.982 + 0.048;
+    p.life -= p.decay;
+    if (p.life <= 0) { parts.splice(i, 1); continue; }
+    fxCtx.globalAlpha = clamp(p.life, 0, 1);
+    fxCtx.fillStyle = p.col;
+    fxCtx.beginPath(); fxCtx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2); fxCtx.fill();
+  }
+  fxCtx.globalAlpha = 1;
+  fxCtx.globalCompositeOperation = "source-over";
+  // 部件清空后把画布擦干净，避免残留
+  if (!parts.length && !rockets.length) fxCtx.clearRect(0, 0, w, h);
+}
+
+/* 点击天空放烟花（避开控件与卡片） */
+document.addEventListener("click", (ev) => {
+  const el = ev.target;
+  if (el.closest("button,input,textarea,a,#bar,.card,.lantern-stage")) return;
+  launch(ev.clientX, ev.clientY);
+  chime(ev.clientX / window.innerWidth);
+}, { passive: true });
+
+/* =========================================================================
+   4. 主循环
+   ========================================================================= */
+let t0 = performance.now();
+let lastFire = 0;
+function loop(now) {
+  const t = (now - t0) / 1000;
+  if (!document.hidden) {
+    drawStars(t);
+    drawFlag(t);
+    stepFx();
+    // 自动烟花
+    if (!REDUCED && now - lastFire > 4200 && Math.random() < 0.35) {
+      lastFire = now;
+      launch();
+    }
+    stepLanterns(now);
+  }
+  requestAnimationFrame(loop);
+}
+
+/* =========================================================================
+   5. 祝福语
+   ========================================================================= */
+const WISHES = [
+  "刁老师，国庆快乐！愿您身体康健，少熬夜，多休息。",
+  "祝刁老师节日快乐——您讲过的题我都记得，您说过的话也一样。",
+  "愿刁老师桃李满天下，春晖遍四方。国庆节快乐！",
+  "盱眙的秋天最舒服了，愿刁老师这几天能好好歇一歇。",
+  "刁老师，谢谢您把难懂的东西讲得让人听得懂。国庆快乐！",
+  "祝刁老师国庆快乐！愿您以后遇到的每一个学生，都像您对我们一样用心。",
+  "愿刁老师的讲台永远有人认真听，愿刁老师的名字永远有人记得。",
+  "刁老师辛苦了，国庆七天，愿您一天都不用操心作业。",
+  "祝您国庆快乐！愿您的心情像今天的天空一样开阔。",
+  "刁老师，您是我们心里那个「永远有耐心」的人。节日快乐！",
+  "愿刁老师岁岁平安，事事顺遂，国庆快乐。",
+  "祝刁老师：上课顺利，下课轻松，放假开心。",
+  "刁老师，您教的不只是知识，还有怎么做人。国庆节快乐！",
+  "愿盱中的桂花香、小龙虾香，都飘到刁老师窗前去。",
+  "祝刁老师国庆快乐！粉笔灰少沾一点，笑容多一点。",
+  "您站在讲台上的样子，是我们记得最久的样子。刁老师，节日快乐。",
+  "愿刁老师桃李成荫，也愿您自己被生活温柔以待。",
+  "刁老师，国庆快乐！这一句祝福，是我们班一起想出来的。",
+  "愿您的每一份认真，都被看见，都被记得。国庆节快乐！",
+  "祝刁老师身体健康，阖家幸福，国庆快乐！",
+  "刁老师，放假了就别想学校的事了——您也该当一回小孩。",
+  "愿刁老师以后批作业时，看到的都是让人开心的答案。",
+  "祝刁老师国庆快乐！愿您走的路都平坦，遇到的人都善良。",
+  "您把最好的年纪给了讲台，我们把最好的祝福给您。",
+  "刁老师，愿您被这个节日温柔以待，也愿您每天都像放假一样松弛。",
+  "祝刁老师国庆快乐！愿您家的饭永远热，愿您的灯永远亮。",
+  "谢谢刁老师从来没放弃过任何一个学生。国庆快乐！",
+  "愿刁老师的日子，像五星红旗一样，永远鲜亮。",
+  "刁老师，国庆快乐！您的学生，在很远的地方也想您。",
+  "祝刁老师：身体好，心情好，学生好，一切都好。"
+];
+const EXTRA = [
+  "愿您走过的每一段路，都有人记得您的名字。",
+  "愿您教过的每一个孩子，都长成让您骄傲的样子。",
+  "愿您的努力，都被这个世界认真对待。",
+  "愿您的窗前常年有光，桌上有茶，心里没事。",
+  "愿您不必总是坚强，也可以偶尔疲惫。",
+  "愿您被学生的真心一遍遍提醒：这一切值得。"
+];
+
+let blessTimer = 0, lastWishIdx = -1;
+function typeWrite(text, speed) {
+  const box = $("blessText");
+  clearInterval(blessTimer);
+  let i = 0;
+  box.innerHTML = '<span class="caret"></span>';
+  const caret = box.querySelector(".caret");
+  blessTimer = setInterval(() => {
+    if (i >= text.length) { clearInterval(blessTimer); return; }
+    caret.insertAdjacentText("beforebegin", text[i]);
+    i++;
+  }, speed || 46);
+}
+
+function nextWish() {
+  let i;
+  do { i = (Math.random() * WISHES.length) | 0; } while (i === lastWishIdx && WISHES.length > 1);
+  lastWishIdx = i;
+  const line = WISHES[i] + (Math.random() < 0.34 ? " " + pick(EXTRA) : "");
+  typeWrite(line);
+  return line;
+}
+
+let curWish = "";
+$("btnBless").addEventListener("click", () => { curWish = nextWish(); });
+$("btnCopyBless").addEventListener("click", () => {
+  copyText(curWish || $("blessText").textContent.trim())
+    .then(() => toast("祝福已复制 ✓"))
+    .catch(() => toast("复制失败，手动选一下吧"));
+});
+
+/* =========================================================================
+   6. 孔明灯
+   ========================================================================= */
+const stage = $("stage");
+let lanternCount = 0;
+const lanterns = [];
+const LANTERN_WISHES = [
+  "愿老师身体康健", "愿老师桃李满园", "愿老师岁岁平安", "愿老师少些操劳",
+  "愿老师笑口常开", "愿老师事事顺遂", "愿老师阖家幸福", "愿老师被温柔以待",
+  "愿老师心想事成", "愿老师一切顺意", "愿老师常有闲暇", "愿老师年年有余"
+];
+
+function addLantern(text) {
+  const el = document.createElement("div");
+  el.className = "lantern";
+  const dur = rand(9, 13.5);
+  el.style.left = rand(6, 88) + "%";
+  el.style.animationDuration = dur + "s";
+  const wish = text || pick(LANTERN_WISHES);
+  el.innerHTML = '<div class="wish"></div><div class="body"></div>';
+  el.querySelector(".wish").textContent = wish;
+  stage.appendChild(el);
+  lanterns.push({ el, born: performance.now(), life: dur * 1000 });
+  lanternCount++;
+  $("lanternCount").textContent = lanternCount;
+  $("lastWish").textContent = "🕯 「" + wish + "」";
+  // 灯升上去的时候放一颗小烟花
+  setTimeout(() => {
+    const r = stage.getBoundingClientRect();
+    const px = r.left + (parseFloat(el.style.left) / 100) * r.width + 17;
+    const py = r.top + r.height * 0.34;
+    explode(px, py, "#ffb347");
+  }, dur * 620);
+  if (lanternCount === 77) toast("第 77 盏灯亮了 🎉");
+}
+
+function stepLanterns() {
+  const now = performance.now();
+  for (let i = lanterns.length - 1; i >= 0; i--) {
+    if (now - lanterns[i].born > lanterns[i].life + 400) {
+      lanterns[i].el.remove();
+      lanterns.splice(i, 1);
+    }
+  }
+}
+
+stage.addEventListener("click", (ev) => {
+  if (ev.target.closest(".tip")) { addLantern(); return; }
+  addLantern();
+});
+$("btnLanternAll").addEventListener("click", () => {
+  for (let i = 0; i < 9; i++) setTimeout(() => addLantern(LANTERN_WISHES[i % LANTERN_WISHES.length]), i * 260);
+});
+
+/* =========================================================================
+   7. 贺卡（Canvas 绘制 → 下载 / 复制）
+   ========================================================================= */
+const CW = 1080, CH = 1440;
+const cardCv = $("cardPreview");
+const cardCtx = cardCv.getContext("2d");
+cardCv.width = CW; cardCv.height = CH;
+
+function wrapCJK(g, text, x, y, maxW, lh) {
+  const chars = Array.from(text);
+  let line = "", lines = 0;
+  for (const ch of chars) {
+    if (ch === "\n") { g.fillText(line, x, y + lines * lh); line = ""; lines++; continue; }
+    const test = line + ch;
+    if (g.measureText(test).width > maxW && line) {
+      g.fillText(line, x, y + lines * lh);
+      line = ch; lines++;
+    } else line = test;
+  }
+  if (line) { g.fillText(line, x, y + lines * lh); lines++; }
+  return lines;
+}
+
+function roundRect(g, x, y, w, h, r) {
+  g.beginPath();
+  g.moveTo(x + r, y);
+  g.arcTo(x + w, y, x + w, y + h, r);
+  g.arcTo(x + w, y + h, x, y + h, r);
+  g.arcTo(x, y + h, x, y, r);
+  g.arcTo(x, y, x + w, y, r);
+  g.closePath();
+}
+
+function drawCard() {
+  const g = cardCtx;
+  const wish = ($("cardWish").value || "").trim() || "刁老师，国庆节快乐！愿您身体康健，桃李满园。";
+  const from = ($("fromName").value || "").trim() || "您的学生";
+
+  // 底色
+  const bg = g.createLinearGradient(0, 0, 0, CH);
+  bg.addColorStop(0, "#8f0a1e");
+  bg.addColorStop(0.5, "#7a0718");
+  bg.addColorStop(1, "#42040e");
+  g.fillStyle = bg;
+  g.fillRect(0, 0, CW, CH);
+
+  // 光晕
+  const glow = g.createRadialGradient(CW / 2, CH * 0.26, 40, CW / 2, CH * 0.26, CW * 0.86);
+  glow.addColorStop(0, "rgba(255,190,70,.26)");
+  glow.addColorStop(1, "rgba(255,190,70,0)");
+  g.fillStyle = glow;
+  g.fillRect(0, 0, CW, CH);
+
+  // 星点
+  for (let i = 0; i < 90; i++) {
+    g.globalAlpha = rand(0.08, 0.5);
+    g.fillStyle = "#ffe9b8";
+    g.beginPath();
+    g.arc(Math.random() * CW, Math.random() * CH, rand(0.7, 2.2), 0, Math.PI * 2);
+    g.fill();
+  }
+  g.globalAlpha = 1;
+
+  // 金色描边
+  g.strokeStyle = "rgba(255,215,94,.55)";
+  g.lineWidth = 2;
+  roundRect(g, 34, 34, CW - 68, CH - 68, 26);
+  g.stroke();
+  g.strokeStyle = "rgba(255,215,94,.22)";
+  g.lineWidth = 1;
+  roundRect(g, 48, 48, CW - 96, CH - 96, 20);
+  g.stroke();
+
+  // 顶部小旗
+  const fw = 210, fh = 140, fx0 = (CW - fw) / 2, fy0 = 108;
+  g.save();
+  g.fillStyle = "#de2910";
+  g.fillRect(fx0, fy0, fw, fh);
+  g.fillStyle = "#ffde00";
+  const u = fw / 30;
+  drawStarShape(g, fx0 + 5 * u, fy0 + 5 * u, 3 * u, 0);
+  for (const [ux, uy] of [[10, 2], [12, 4], [12, 7], [10, 9]]) {
+    const cx = fx0 + ux * u, cy = fy0 + uy * u;
+    drawStarShape(g, cx, cy, u, Math.atan2(fy0 + 5 * u - cy, fx0 + 5 * u - cx) + Math.PI / 2);
+  }
+  g.restore();
+
+  // 学校
+  g.textAlign = "center";
+  g.fillStyle = "rgba(255,222,150,.9)";
+  g.font = "500 30px 'PingFang SC','Microsoft YaHei',sans-serif";
+  g.fillText("江 苏 省 盱 眙 中 学", CW / 2, fy0 + fh + 74);
+
+  // 主标题
+  const titleGrad = g.createLinearGradient(0, CH * 0.36, 0, CH * 0.5);
+  titleGrad.addColorStop(0, "#fff6d6");
+  titleGrad.addColorStop(0.55, "#ffd75e");
+  titleGrad.addColorStop(1, "#e0a51b");
+  g.fillStyle = titleGrad;
+  g.font = "800 84px 'Songti SC','STSong','SimSun',serif";
+  g.fillText("祝刁老师", CW / 2, fy0 + fh + 182);
+  g.fillText("国庆节快乐", CW / 2, fy0 + fh + 288);
+
+  // 分隔金线
+  const ly = fy0 + fh + 340;
+  const lg = g.createLinearGradient(CW * 0.16, 0, CW * 0.84, 0);
+  lg.addColorStop(0, "rgba(255,215,94,0)");
+  lg.addColorStop(0.5, "rgba(255,215,94,.9)");
+  lg.addColorStop(1, "rgba(255,215,94,0)");
+  g.fillStyle = lg;
+  g.fillRect(CW * 0.16, ly, CW * 0.68, 2);
+
+  // 77 周年
+  g.fillStyle = "#ffe89a";
+  g.font = "800 116px 'Songti SC','STSong','SimSun',serif";
+  g.fillText("77", CW / 2, ly + 138);
+  g.font = "500 28px 'PingFang SC','Microsoft YaHei',sans-serif";
+  g.fillStyle = "rgba(255,222,150,.82)";
+  g.fillText("周年 · 1949 — 2026", CW / 2, ly + 182);
+
+  // 祝福语
+  g.font = "500 44px 'STKaiti','KaiTi','Kaiti SC','Songti SC','STSong','SimSun',serif";
+  g.fillStyle = "#ffeed6";
+  const lines = wrapCJK(g, wish, CW / 2, ly + 282, CW - 260, 64);
+  // 居中：wrapCJK 用 textAlign=center，所以 x 传中心即可
+
+  // 署名
+  g.font = "500 34px 'PingFang SC','Microsoft YaHei',sans-serif";
+  g.fillStyle = "#ffd75e";
+  g.fillText("—— " + from, CW / 2, CH - 168);
+
+  g.font = "400 24px 'PingFang SC','Microsoft YaHei',sans-serif";
+  g.fillStyle = "rgba(255,222,150,.6)";
+  g.fillText("2026年10月1日", CW / 2, CH - 116);
+
+  return lines;
+}
+
+let cardRAF = 0;
+function scheduleCard() {
+  cancelAnimationFrame(cardRAF);
+  cardRAF = requestAnimationFrame(() => {
+    try { drawCard(); window.__cardErr = "ok"; }
+    catch (e) { window.__cardErr = String((e && e.message) || e); console.error("drawCard 失败:", e); }
+  });
+}
+$("btnCardShuffle").addEventListener("click", () => {
+  const w = pick(WISHES).replace(/^祝|^刁老师，|^愿/g, (m) => m);
+  $("cardWish").value = w.replace(/^祝刁老师/, "刁老师，").replace(/^刁老师，刁老师，/, "刁老师，");
+  scheduleCard();
+});
+$("cardWish").addEventListener("input", scheduleCard);
+$("fromName").addEventListener("input", scheduleCard);
+
+$("btnDownload").addEventListener("click", () => {
+  try {
+    const url = cardCv.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "祝刁老师国庆节快乐.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    toast("已下载，去「下载」文件夹看看 ✓");
+  } catch (e) {
+    toast("下载失败，可以长按图片保存");
+  }
+});
+
+$("btnCopyImg").addEventListener("click", () => {
+  if (!navigator.clipboard || !window.ClipboardItem) { toast("这个浏览器不支持，直接下载吧"); return; }
+  cardCv.toBlob((blob) => {
+    if (!blob) { toast("复制失败"); return; }
+    navigator.clipboard.write([new ClipboardItem({ "image/png": blob })])
+      .then(() => toast("图片已复制，去微信粘贴 ✓"))
+      .catch(() => toast("复制失败，直接下载吧"));
+  }, "image/png");
+});
+
+/* =========================================================================
+   8. 小问答
+   ========================================================================= */
+const QUIZ = [
+  { q: "中华人民共和国是哪一年成立的？", o: ["1949年", "1945年", "1951年", "1947年"], a: 0 },
+  { q: "今年（2026）是第几个国庆节？", o: ["76", "77", "78", "75"], a: 1 },
+  { q: "五星红旗的设计者是谁？", o: ["徐悲鸿", "曾联松", "齐白石", "梁思成"], a: 1 },
+  { q: "盱眙县属于江苏省的哪个市？", o: ["南京市", "扬州市", "淮安市", "宿迁市"], a: 2 },
+  { q: "盱眙最有名的美食是什么？", o: ["大闸蟹", "小龙虾", "盐水鸭", "狮子头"], a: 1 }
+];
+let qi = 0, qRight = 0, qLocked = false;
+$("quizTotal").textContent = QUIZ.length;
+
+function renderQuiz() {
+  qLocked = false;
+  const it = QUIZ[qi];
+  $("quizQ").textContent = "第 " + (qi + 1) + " 题 · " + it.q;
+  const box = $("quizOpts");
+  box.innerHTML = "";
+  it.o.forEach((txt, i) => {
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.type = "button";
+    b.textContent = String.fromCharCode(65 + i) + ". " + txt;
+    b.addEventListener("click", () => answer(b, i));
+    box.appendChild(b);
+  });
+}
+
+function answer(btn, i) {
+  if (qLocked) return;
+  qLocked = true;
+  const it = QUIZ[qi];
+  const opts = Array.from($("quizOpts").children);
+  opts.forEach((o) => o.classList.add("locked"));
+  if (i === it.a) {
+    btn.classList.add("right");
+    qRight++;
+    $("quizRight").textContent = qRight;
+    const r = btn.getBoundingClientRect();
+    explode(r.left + r.width / 2, r.top + r.height / 2, "#7ee8a2");
+    toast("答对啦 ✓");
+  } else {
+    btn.classList.add("wrong");
+    opts[it.a].classList.add("right");
+    toast("不对哦，答案是 " + String.fromCharCode(65 + it.a));
+  }
+  setTimeout(() => {
+    qi++;
+    if (qi >= QUIZ.length) {
+      $("quizQ").textContent = qRight === QUIZ.length
+        ? "全对！刁老师一定很欣慰 🎉"
+        : "答完啦，对了 " + qRight + " 道。祝刁老师国庆快乐！";
+      $("quizOpts").innerHTML = "";
+      for (let k = 0; k < 7; k++) setTimeout(() => launch(), k * 260);
+    } else renderQuiz();
+  }, 1500);
+}
+
+$("btnQuizReset").addEventListener("click", () => {
+  qi = 0; qRight = 0; $("quizRight").textContent = "0"; renderQuiz();
+});
+
+/* =========================================================================
+   9. 祝福墙（localStorage）
+   ========================================================================= */
+const WALL_KEY = "diao-nationalday-wall-v1";
+function loadWall() {
+  try { return JSON.parse(localStorage.getItem(WALL_KEY) || "[]"); } catch (e) { return []; }
+}
+function saveWall(list) {
+  try { localStorage.setItem(WALL_KEY, JSON.stringify(list.slice(-80))); } catch (e) {}
+}
+function renderWall() {
+  const list = loadWall();
+  const box = $("wallList");
+  box.innerHTML = "";
+  if (!list.length) {
+    box.innerHTML = '<div style="text-align:center;opacity:.5;font-size:14px;padding:16px">还没有留言，当第一个吧</div>';
+    return;
+  }
+  for (const m of list.slice().reverse()) {
+    const el = document.createElement("div");
+    el.className = "wall-item";
+    const who = document.createElement("div"); who.className = "who"; who.textContent = m.who || "匿名同学";
+    const say = document.createElement("div"); say.className = "say"; say.textContent = m.msg;
+    const when = document.createElement("div"); when.className = "when"; when.textContent = m.at;
+    el.append(who, say, when);
+    box.appendChild(el);
+  }
+}
+$("btnWallAdd").addEventListener("click", () => {
+  const msg = $("wallMsg").value.trim();
+  if (!msg) { toast("先写点什么吧"); return; }
+  const list = loadWall();
+  list.push({
+    who: $("wallName").value.trim(),
+    msg,
+    at: new Date().toLocaleString("zh-CN", { hour12: false })
+  });
+  saveWall(list);
+  $("wallMsg").value = "";
+  renderWall();
+  toast("已贴上 ✓");
+  launch();
+});
+$("btnWallClear").addEventListener("click", () => {
+  if (!confirm("清空这台电脑上保存的祝福墙留言？")) return;
+  saveWall([]);
+  renderWall();
+  toast("已清空");
+});
+
+/* =========================================================================
+   10. 背景音乐（Web Audio 现场合成，不加载任何音频文件）
+   ========================================================================= */
+let actx = null, musicOn = false, musicTimer = 0, masterGain = null;
+const NOTE = { C4: 261.63, D4: 293.66, E4: 329.63, G4: 392.00, A4: 440.00,
+               C5: 523.25, D5: 587.33, E5: 659.25, G5: 783.99, A5: 880.00,
+               C6: 1046.50, F4: 349.23, F5: 698.46 };
+/* 五声音阶原创小调，喜庆、干净，循环播放 */
+const MELODY = [
+  ["G4", .5], ["A4", .5], ["C5", 1], ["A4", .5], ["G4", .5], ["E4", 1],
+  ["D4", .5], ["E4", .5], ["G4", 1], ["E4", .5], ["D4", .5], ["C4", 1],
+  ["G4", .5], ["A4", .5], ["C5", .5], ["D5", .5], ["E5", 1], ["C5", 1],
+  ["D5", .5], ["C5", .5], ["A4", 1], ["G4", .5], ["E4", .5], ["C5", 1.5], ["C5", .5]
+];
+const BASS = [["C4", 4], ["A4", 4], ["F4", 4], ["G4", 4]];
+
+function ensureAudio() {
+  if (!actx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    actx = new AC();
+    masterGain = actx.createGain();
+    masterGain.gain.value = 0.0;
+    masterGain.connect(actx.destination);
+  }
+  if (actx.state === "suspended") actx.resume();
+  return actx;
+}
+
+function bell(freq, at, dur, vol) {
+  const o = actx.createOscillator();
+  const o2 = actx.createOscillator();
+  const g = actx.createGain();
+  o.type = "sine"; o.frequency.value = freq;
+  o2.type = "sine"; o2.frequency.value = freq * 2.002;
+  const g2 = actx.createGain(); g2.gain.value = 0.24;
+  o2.connect(g2); g2.connect(g);
+  o.connect(g); g.connect(masterGain);
+  const v = vol === undefined ? 0.16 : vol;
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.exponentialRampToValueAtTime(v, at + 0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+  o.start(at); o2.start(at);
+  o.stop(at + dur + 0.05); o2.stop(at + dur + 0.05);
+}
+
+function pad(freq, at, dur, vol) {
+  const o = actx.createOscillator();
+  const g = actx.createGain();
+  const f = actx.createBiquadFilter();
+  f.type = "lowpass"; f.frequency.value = 700;
+  o.type = "triangle"; o.frequency.value = freq;
+  o.connect(f); f.connect(g); g.connect(masterGain);
+  const v = vol === undefined ? 0.055 : vol;
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(v, at + 0.5);
+  g.gain.linearRampToValueAtTime(0.0001, at + dur);
+  o.start(at); o.stop(at + dur + 0.05);
+}
+
+function scheduleLoop() {
+  if (!musicOn || !actx) return;
+  const beat = 0.46;
+  const start = actx.currentTime + 0.08;
+  let t = start;
+  for (const [n, b] of MELODY) {
+    bell(NOTE[n], t, b * beat * 1.5, 0.15);
+    t += b * beat;
+  }
+  let bt = start;
+  for (const [n, b] of BASS) {
+    pad(NOTE[n] / 2, bt, b * beat * 0.92, 0.05);
+    bt += b * beat;
+  }
+  const total = (t - start) * 1000 + 320;
+  musicTimer = setTimeout(scheduleLoop, total);
+}
+
+function setMusic(on) {
+  musicOn = on;
+  $("barMusic").classList.toggle("on", on);
+  if (on) {
+    ensureAudio();
+    masterGain.gain.cancelScheduledValues(actx.currentTime);
+    masterGain.gain.setTargetAtTime(0.9, actx.currentTime, 0.4);
+    clearTimeout(musicTimer);
+    scheduleLoop();
+  } else {
+    clearTimeout(musicTimer);
+    if (masterGain) masterGain.gain.setTargetAtTime(0.0, actx.currentTime, 0.25);
+  }
+}
+$("barMusic").addEventListener("click", () => setMusic(!musicOn));
+
+/* 点击烟花时的一点点音效 */
+function chime(pos) {
+  if (!actx || actx.state !== "running" || !musicOn) return;
+  const scale = [NOTE.C5, NOTE.D5, NOTE.E5, NOTE.G5, NOTE.A5, NOTE.C6];
+  const n = scale[clamp(Math.round(pos * (scale.length - 1)), 0, scale.length - 1)];
+  bell(n, actx.currentTime + 0.01, 0.5, 0.09);
+}
+
+/* =========================================================================
+   11. 底部控制条 / 滚动出现 / 初始化
+   ========================================================================= */
+$("barFire").addEventListener("click", () => {
+  for (let i = 0; i < 5; i++) setTimeout(() => launch(), i * 170);
+  $("barFire").classList.add("on");
+  setTimeout(() => $("barFire").classList.remove("on"), 700);
+});
+$("barTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" }));
+
+const io = new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+let rsTimer = 0;
+window.addEventListener("resize", () => {
+  clearTimeout(rsTimer);
+  rsTimer = setTimeout(() => {
+    buildStars();
+    sizeFlag();
+    scheduleCard();
+  }, 160);
+});
+
+function init() {
+  buildFlag();
+  sizeFlag();
+  buildStars();
+  sizeCanvas(fx);
+  renderQuiz();
+  renderWall();
+  scheduleCard();
+  // 卡片模式：地址栏带 #cardonly 时只显示贺卡，方便整屏截图/导出
+  if (location.hash === "#cardonly") {
+    document.body.classList.add("cardonly");
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleCard);
+    scheduleCard();
+    setTimeout(() => {
+      try {
+        const d = cardCtx.getImageData(0, 0, CW, CH).data;
+        let maxR = 0, sum = 0, n = 0;
+        for (let i = 0; i < d.length; i += 4 * 53) { sum += d[i] + d[i + 1] + d[i + 2]; if (d[i] > maxR) maxR = d[i]; n++; }
+        document.title = "DBG maxR=" + maxR + " avg=" + (sum / (3 * n)).toFixed(1)
+          + " err=" + (window.__cardErr || "never") + " w=" + cardCv.width + "x" + cardCv.height;
+      } catch (e) { document.title = "DBG getImageData 失败: " + e.message; }
+    }, 1500);
+  }
+  curWish = nextWish();
+  // 开场烟花
+  if (!REDUCED) {
+    setTimeout(() => launch(), 700);
+    setTimeout(() => launch(), 1500);
+    setTimeout(() => launch(), 2600);
+  }
+  requestAnimationFrame(loop);
+}
+
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleCard);
+init();
+</script>
+</body>
+</html><!--x-->
